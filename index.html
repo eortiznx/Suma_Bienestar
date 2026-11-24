@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUMA · Configuración funcional</title>
+  <meta name="description" content="Prototipo funcional de SUMA: dependencias, macroprocesos, procesos y asociación de formularios Gforms.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="login-screen">
+    <div class="govbar"><div class="institution-width"><span class="gov-logo" role="img" aria-label="GOV.CO"></span><span class="gov-links">◯ PQRSD <span class="lang">EN</span></span></div></div>
+    <div class="institution-nav"><div class="institution-width"><span class="cali-logo" role="img" aria-label="Alcaldía de Santiago de Cali"></span><nav aria-label="Navegación institucional"><span>Inicio</span><span>Transparencia y acceso a la información pública</span><span>Servicios a la ciudadanía</span><span>Participa</span><span>La entidad</span><span>Normativas</span><span>Organismos</span></nav><span class="institution-search" aria-hidden="true">⌕</span></div></div>
+    <main class="login-main"><div class="login-crumb">Inicio <span>›</span> Ingreso a la administración del sistema</div>
+      <form id="login-form" class="login-card">
+        <h1>Inicio de sesión con contraseña</h1>
+        <p>Ingrese su correo electrónico o usuario y contraseña para iniciar sesión como administrador</p>
+        <label for="login-user">Correo electrónico o usuario del sistema *</label><input id="login-user" name="username" autocomplete="off" required>
+        <label for="login-pass">Contraseña *</label><input id="login-pass" name="password" type="password" autocomplete="off" required>
+        <p id="login-error" class="error" role="alert" hidden></p>
+        <div class="login-actions"><button class="login-primary" type="submit">Iniciar sesión</button><button type="button" class="text-button" id="forgot">Olvidé mi contraseña</button></div>
+        <div class="demo-login"><strong>Prototipo funcional de SUMA</strong><p>Utiliza los datos de demostración. No ingreses credenciales reales.</p><button class="secondary" id="fill-demo" type="button">Completar datos de demostración</button></div>
+      </form>
+      <p class="login-foot">Sistema de Información de Población Migrante</p>
+    </main>
+  </div>
+  <div id="application" hidden>
+    <aside class="sidebar">
+      <a href="#dependencias" class="brand"><span class="brand-icon">S</span><span>SUMA<small>Población migrante · Cali</small></span></a>
+      <div class="nav-caption">ADMINISTRACIÓN</div>
+      <nav id="main-nav" aria-label="Configuración de SUMA"></nav>
+      <div class="sidebar-note"><span class="note-icon">i</span><div><strong>Módulos base</strong><p>Usuarios y permisos se administran en Usuarios. Los formularios se construyen en Gforms.</p></div></div>
+      <div class="sidebar-bottom"><span class="small-cali">Alcaldía de Santiago de Cali</span><span>Configuración de SUMA</span></div>
+    </aside>
+    <div class="app-main">
+      <header class="app-header"><button class="icon-btn mobile-menu" id="menu-toggle" aria-label="Mostrar menú">☰</button><span>Administración del sistema</span><div class="header-right"><span class="prototype-tag">Prototipo · Datos de ejemplo</span><span class="avatar">AD</span><span class="admin-label">Administrador SUMA<small>Acceso de demostración</small></span><button class="icon-btn" id="logout" title="Cerrar sesión" aria-label="Cerrar sesión"></button></div></header>
+      <main class="workspace">
+        <div class="breadcrumb" id="breadcrumb"></div>
+        <section class="page-heading"><div><div class="eyebrow">CONFIGURACIÓN ORGANIZACIONAL</div><h1 id="page-title"></h1><p id="page-description"></p></div><button class="primary" id="new-item"></button></section>
+        <div class="structure-banner"><span id="structure-icon"></span><div><strong>Dependencia <span>›</span> Macroproceso <span>›</span> Proceso <span>›</span> Formulario Gforms</strong><p>La caracterización general es común. Cada proceso utiliza un formulario específico.</p></div></div>
+        <section class="context-panel" id="context-panel" hidden></section>
+        <section class="data-card">
+          <div class="card-heading"><div><h2 id="table-title"></h2><p id="table-subtitle"></p></div><button class="text-button" id="reset-demo">Restablecer ejemplo</button></div>
+          <div class="filters"><div class="search-wrap"><span id="search-icon"></span><input id="search" placeholder="Escriba para filtrar…" aria-label="Buscar registros"></div><select id="filter-dependency" aria-label="Filtrar por dependencia"></select><select id="filter-macro" aria-label="Filtrar por macroproceso"></select><select id="filter-status" aria-label="Filtrar por estado"><option value="">Todos los estados</option><option value="true">Activo</option><option value="false">Inactivo</option></select></div>
+          <div class="table-scroll"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+          <div class="table-footer"><span id="results-label"></span><div class="page-control"><label for="page-size">Mostrar</label><select id="page-size"><option>10</option><option>25</option><option>50</option></select><span>registros</span><button id="previous-page" class="icon-btn" aria-label="Página anterior">‹</button><span id="page-indicator"></span><button id="next-page" class="icon-btn" aria-label="Página siguiente">›</button></div></div>
+        </section>
+        <div class="permission-note" id="permission-note"></div>
+      </main>
+      <footer class="app-footer"><span>SUMA · Sistema de Información de Población Migrante</span><span>Configuración inicial</span></footer>
+    </div>
+  </div>
+  <dialog id="editor"><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="app.js"></script><script src="general-form-data.js"></script><script src="care.js"></script><script src="services.js"></script><script src="unified.js"></script>
+</body></html>
