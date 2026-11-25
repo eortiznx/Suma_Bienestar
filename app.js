@@ -154,7 +154,8 @@ function editItem(id){
   dialog(title,'Complete la información de configuración.',`<form id="item-form"><div class="dialog-body"><h3 class="form-section-title">Información general</h3><div class="form-grid">${parent}<div class="field full"><label for="edit-name">Nombre <span class="required">*</span></label><input id="edit-name" name="name" value="${esc(x?.name||'')}" maxlength="140" required></div><div class="field full"><label for="edit-description">Descripción</label><textarea id="edit-description" name="description" maxlength="800">${esc(x?.description||'')}</textarea></div><div class="field"><label for="edit-status">Estado <span class="required">*</span></label><select id="edit-status" name="active"><option value="true" ${x?.active!==false?'selected':''}>Activo</option><option value="false" ${x?.active===false?'selected':''}>Inactivo</option></select></div></div>${specific}<p class="error" id="form-error" role="alert" hidden></p></div></form>`,`<button class="secondary" data-close>Cancelar</button><button class="primary" form="item-form" type="submit">${x?'Guardar cambios':'Crear '+c.singular}</button>`);
   if(section==='dependencias'){
     const updateCount=()=>$('#selection-count').textContent=`${$('#item-form').querySelectorAll('[name=users]:checked').length} usuarios seleccionados`;
-    updateCount();$('#item-form').addEventListener('change',updateCount);
+    const primary=document.createElement('div');primary.className='field principal-field';primary.innerHTML='<label for="edit-primary">Usuario principal / filtro de remisiones</label><select id="edit-primary" name="primaryUserId"></select><p class="hint">Recibe las remisiones dirigidas a la dependencia y las distribuye entre su equipo.</p>';$('#selection-count').after(primary);
+ const refreshPrimary=()=>{const selected=$('#edit-primary').value||String(x?.primaryUserId||'');const linked=[...$('#item-form').querySelectorAll('[name=users]:checked')].map(i=>Number(i.value));$('#edit-primary').innerHTML=options(users.filter(u=>linked.includes(u.id)),linked.includes(Number(selected))?selected:'','Seleccione usuario principal');$('#edit-primary').required=linked.length>0;};refreshPrimary();updateCount();$('#item-form').addEventListener('change',e=>{updateCount();if(e.target.name==='users')refreshPrimary();});
     $('#user-search').oninput=e=>document.querySelectorAll('.user-option').forEach(r=>r.hidden=!r.dataset.userName.includes(e.target.value.toLowerCase()));
   }
   if(section==='procesos'){
@@ -166,7 +167,7 @@ function editItem(id){
     const error=msg=>{$('#form-error').className='error';$('#form-error').textContent=msg;$('#form-error').hidden=false;};
     if(!name)return error('Ingrese un nombre válido.');
     const val={id:x?.id||Math.max(0,...db[section].map(a=>a.id))+1,name,description:String(fd.get('description')).trim(),active};
-    if(section==='dependencias')val.users=fd.getAll('users').map(Number);
+    if(section==='dependencias'){val.users=fd.getAll('users').map(Number);val.primaryUserId=Number(fd.get('primaryUserId'))||null;if(val.users.length&&!val.users.includes(val.primaryUserId))return error('Selecciona un usuario principal entre los usuarios vinculados.');}
     if(section==='macroprocesos')val.dependencyId=Number(fd.get('dependencyId'));
     if(section==='procesos'){val.macroId=Number(fd.get('macroId'));val.formId=Number(fd.get('formId'));}
     const sameParent=a=>section==='dependencias'||(section==='macroprocesos'?a.dependencyId===val.dependencyId:a.macroId===val.macroId);
@@ -199,7 +200,7 @@ function viewItem(id){
   let details='',related='';
   if(key==='dependencias'){
     const ms=db.macroprocesos.filter(a=>a.dependencyId===x.id),us=x.users.map(i=>users.find(a=>a.id===i)).filter(Boolean);
-    details=`<div class="detail-grid"><div><dt>Usuarios vinculados</dt><dd>${us.length}</dd></div><div><dt>Macroprocesos</dt><dd>${ms.length}</dd></div><div><dt>Caracterización general</dt><dd>Formulario común · Gforms ID 1</dd></div></div>`;
+    details=`<div class="detail-grid"><div><dt>Usuario principal</dt><dd>${esc(users.find(u=>u.id===x.primaryUserId)?.name||"Sin configurar")}</dd></div><div><dt>Usuarios vinculados</dt><dd>${us.length}</dd></div><div><dt>Macroprocesos</dt><dd>${ms.length}</dd></div><div><dt>Caracterización general</dt><dd>Formulario común · Gforms ID 1</dd></div></div>`;
     related=`<h3 class="form-section-title">Usuarios de la dependencia</h3>${us.length?us.map(u=>`<div class="related-item">${svg('people')}<div><strong>${esc(u.name)}</strong><small>${esc(u.login)} · ${esc(u.access)}</small></div></div>`).join(''):'<p class="hint">Esta dependencia aún no tiene usuarios vinculados.</p>'}<hr class="section-divider"><h3 class="form-section-title">Macroprocesos asociados</h3>${ms.map(a=>`<div class="related-item">${svg('layers')}<div><strong>${esc(a.name)}</strong><small>${db.procesos.filter(p=>p.macroId===a.id).length} procesos</small></div>${badge(a)}</div>`).join('')||'<p class="hint">No hay macroprocesos asociados.</p>'}`;
   }else if(key==='macroprocesos'){
     const ps=db.procesos.filter(a=>a.macroId===x.id);

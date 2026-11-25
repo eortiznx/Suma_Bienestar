@@ -1,31 +1,23 @@
-SUMA · Configuración funcional
-Versión descargable del prototipo actual (23 de noviembre de 2026).
-
-CÓMO ABRIR
-1. Descomprime todo el ZIP en una carpeta.
-2. Abre index.html en Chrome, Edge o Firefox actualizado.
-3. Pulsa «Completar datos de demostración» y luego «Iniciar sesión».
+SUMA · Entrega de archivos — 25 de noviembre de 2026
 
 CONTENIDO
-- index.html: página de entrada.
-- styles.css: estilos.
-- app.js, care.js, services.js, unified.js: lógica del prototipo.
-- general-form.json: estructura de campos del formulario general.
-- general-form-data.js: copia de la estructura para abrir sin servidor.
-- cali-reference.png: recurso gráfico institucional usado por la interfaz.
+• index.html y archivos del prototipo actual (versión publicada 14).
+• HTML, CSS, JavaScript, imágenes, logo Cali Suma y formulario general JSON.
+• tests/: verificaciones de cálculos y reglas del flujo.
+• documentacion/: historias de usuario v1.0 en Word y PDF, generadas el 23 de noviembre.
+• versiones_anteriores/: primer ZIP entregado.
 
-ALCANCE
-Incluye el prototipo construido hasta ahora: configuración organizacional,
-personas y caracterización, hogares, intervenciones, remisiones y las vistas
-de referencia de módulos base disponibles en la versión actual.
-La configuración general conserva el selector «Formulario de caracterización
-general» con el último ajuste aplicado.
+IMPORTANTE SOBRE LAS HISTORIAS DE USUARIO
+La versión 1.0 es la entregada previamente. No incorpora los ajustes de la sesión del 25 de noviembre ni el nuevo dashboard. Se incluye como documento histórico, sin modificar su contenido.
 
-Los registros son de demostración. Los cambios se guardan en el almacenamiento
-local del navegador, no se sincronizan entre equipos y no se incluyen los cambios
-que se hayan hecho en otra sesión del sitio publicado. Usuarios y Gforms mantienen
-sus controles de referencia según el prototipo. El acceso de demostración no
-constituye autenticación real. Utiliza datos de ejemplo.
+CÓMO EJECUTAR EL PROTOTIPO
+1. Descomprime el ZIP conservando las carpetas.
+2. Desde la carpeta que contiene index.html, ejecuta: python -m http.server 8000
+3. Abre http://localhost:8000 en el navegador.
+4. Usa «Completar datos de demostración» y «Iniciar sesión».
+5. Cambia «Perfil de demostración» para revisar los flujos por dependencia.
 
-Si modificas general-form.json, actualiza también general-form-data.js.
-Para servirlo en un servidor web, publica juntos todos los archivos de esta carpeta.
+Algunas funciones leen archivos JSON y requieren el servidor local; abrir el HTML directamente puede restringirlas.
+Los registros se guardan en el navegador. Los perfiles y notificaciones son simulados. Las evidencias conservan nombres y descripciones, sin almacenar su contenido.
+
+Sitio publicado: https://suma-configuracion-cali.classicherb2.chatgpt.site/?version=14#dashboard

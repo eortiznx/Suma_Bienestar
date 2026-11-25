@@ -4,7 +4,9 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SUMA · Configuración funcional</title>
   <meta name="description" content="Prototipo funcional de SUMA: dependencias, macroprocesos, procesos y asociación de formularios Gforms.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261125">
+<link rel="stylesheet" href="dashboard.css?v=20261125-dashboard">
+<link rel="stylesheet" href="workflow.css?v=20261125"><link rel="stylesheet" href="suma-theme.css?v=20261125-logo">
 </head>
 <body>
   <div id="login-screen">
@@ -25,7 +27,7 @@
   </div>
   <div id="application" hidden>
     <aside class="sidebar">
-      <a href="#dependencias" class="brand"><span class="brand-icon">S</span><span>SUMA<small>Población migrante · Cali</small></span></a>
+      <a href="#dashboard" class="brand brand-with-logo" aria-label="Cali Suma · Ir al dashboard"><img class="brand-logo" src="cali-suma-logo.png" alt="Cali Suma · Sin dejar a nadie atrás" width="491" height="236"></a>
       <div class="nav-caption">ADMINISTRACIÓN</div>
       <nav id="main-nav" aria-label="Configuración de SUMA"></nav>
       <div class="sidebar-note"><span class="note-icon">i</span><div><strong>Módulos base</strong><p>Usuarios y permisos se administran en Usuarios. Los formularios se construyen en Gforms.</p></div></div>
@@ -51,5 +53,8 @@
   </div>
   <dialog id="editor"><div id="dialog-content"></div></dialog>
   <div class="toast" id="toast" role="status" hidden></div>
-  <script src="app.js"></script><script src="general-form-data.js"></script><script src="care.js"></script><script src="services.js"></script><script src="unified.js"></script>
+  <script src="app.js?v=20261125"></script><script src="care.js?v=20261125"></script><script src="services.js?v=20261125"></script><script src="unified.js?v=20261125"></script>
+<script src="report-core.js?v=20261125"></script><script src="report-countries.js?v=20261125"></script><script src="cali-comunas-map.js?v=20261125"></script><script src="followup-reports.js?v=20261125"></script>
+<script src="dashboard-core.js?v=20261125-dashboard"></script><script src="dashboard.js?v=20261125-dashboard"></script>
+<script src="workflow-core.js?v=20261125"></script><script src="workflow.js?v=20261125"></script><script src="workflow-care.js?v=20261125"></script><script src="workflow-catalogue.js?v=20261125"></script>
 </body></html>

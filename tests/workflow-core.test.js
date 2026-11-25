@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict'),W=require('../dist/workflow-core.js');
+const deps=[{id:1,active:true,users:[1,2],primaryUserId:1},{id:2,active:true,users:[3,4],primaryUserId:3},{id:3,active:false,users:[5],primaryUserId:5},{id:4,active:true,users:[6],primaryUserId:7}];
+const c={dep:1,currentDep:2},r={dep:1,assignedDep:2};
+assert.equal(W.canManageCase(c,1),false,'origin read-only');assert.equal(W.canManageCase(c,2),true);assert.equal(W.canManageCase({dep:1},1),true);
+assert.equal(W.canManageReferral(r,c,1),false);assert.equal(W.canManageReferral(r,c,2),true);assert.equal(W.canManageReferral({...r,forwarded:true},c,2),false);assert.equal(W.canManageReferral(r,{dep:1,currentDep:1},2),false);
+assert.equal(W.validPrincipal(deps[1]),true);assert.equal(W.validPrincipal(deps[2]),false);assert.equal(W.validPrincipal(deps[3]),false);
+assert.equal(W.actionError({kind:'dependency',target:2,reason:'Valoración'},deps,1),'');assert.ok(W.actionError({kind:'dependency',target:4,reason:'Valoración'},deps,1));assert.ok(W.actionError({kind:'dependency',target:1,reason:'Prueba'},deps,1));
+assert.ok(W.actionError({kind:'user',target:3,reason:'Ausencia'},deps,1));assert.equal(W.actionError({kind:'user',target:2,reason:'Ausencia'},deps,1),'');assert.equal(W.actionError({kind:'none'},deps,1),'');
+assert.equal(W.responseError('En seguimiento','',''),'','ordinary followup requires no final response');assert.ok(W.responseError('Respondida','Atendida',''));assert.equal(W.responseError('Respondida','Atendida','Cupo asignado'),'');
+assert.ok(W.evidenceError([{name:'id.pdf',description:''}]));assert.equal(W.evidenceError([{name:'id.pdf',description:'Identificación'},{name:'remision.pdf',description:'Remisión'}]),'');
+const offers=[{id:1,entity:1,active:true,isAttention:true,route:'Salud'},{id:2,entity:1,active:true,isAttention:false,route:'Salud'},{id:3,entity:2,active:true,isAttention:true,route:'Educación'},{id:4,entity:1,active:false,isAttention:true,route:'Salud'},{id:5,entity:1,active:true,isAttention:true,route:''}];
+assert.deepEqual(W.eligibleOffers(offers,[{id:1,active:true,dep:2},{id:2,active:true,dep:3}],2).map(o=>o.id),[1]);console.log('Reviewed workflow: 22 assertions passed.');

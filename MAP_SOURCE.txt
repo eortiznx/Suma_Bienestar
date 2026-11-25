@@ -1,0 +1,8 @@
+Capa de referencia de comunas de Cali
+Autoría declarada: IDESC, Departamento Administrativo de Planeación – Alcaldía Distrital de Santiago de Cali.
+Fuente descargada: https://services7.arcgis.com/fHfQ8qeNWagUQB9e/ArcGIS/rest/services/Sitios_de_Inter%C3%A9s_en_Cali_WFL1/FeatureServer/6
+Metadato oficial de referencia: https://mg-idesc.cali.gov.co/geonetwork/srv/api/records/f33097b6-33db-4bc8-8674-f9848b763fc0
+Licencia de la capa geográfica y su adaptación: Creative Commons Atribución Compartir Igual 4.0 (CC BY-SA 4.0).
+https://creativecommons.org/licenses/by-sa/4.0/deed.es
+Cambios: reproyección solicitada en EPSG:4326; simplificación para pantalla y conversión a trazados SVG. Mapa de referencia; no certifica límites oficiales vigentes. No se dibujan domicilios individuales ni puntos de personas.
+Fecha de consulta: 24 de noviembre de 2026.
