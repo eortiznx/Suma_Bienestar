@@ -1,23 +1,9 @@
-SUMA · Entrega de archivos — 25 de noviembre de 2026
+SUMA · Prototipo actualizado
 
-CONTENIDO
-• index.html y archivos del prototipo actual (versión publicada 14).
-• HTML, CSS, JavaScript, imágenes, logo Cali Suma y formulario general JSON.
-• tests/: verificaciones de cálculos y reglas del flujo.
-• documentacion/: historias de usuario v1.0 en Word y PDF, generadas el 23 de noviembre.
-• versiones_anteriores/: primer ZIP entregado.
+Incluye selección múltiple de rutas en Oferta institucional y todos los ajustes anteriores.
 
-IMPORTANTE SOBRE LAS HISTORIAS DE USUARIO
-La versión 1.0 es la entregada previamente. No incorpora los ajustes de la sesión del 25 de noviembre ni el nuevo dashboard. Se incluye como documento histórico, sin modificar su contenido.
+Para ejecutar: descomprime todo; en la carpeta de index.html ejecuta python -m http.server 8000 y abre http://localhost:8000. Algunas funciones leen JSON y requieren este servidor local.
 
-CÓMO EJECUTAR EL PROTOTIPO
-1. Descomprime el ZIP conservando las carpetas.
-2. Desde la carpeta que contiene index.html, ejecuta: python -m http.server 8000
-3. Abre http://localhost:8000 en el navegador.
-4. Usa «Completar datos de demostración» y «Iniciar sesión».
-5. Cambia «Perfil de demostración» para revisar los flujos por dependencia.
+Usa Completar datos de demostración e Iniciar sesión. Los datos se conservan en el navegador. Perfiles, notificaciones y evidencias son demostrativos.
 
-Algunas funciones leen archivos JSON y requieren el servidor local; abrir el HTML directamente puede restringirlas.
-Los registros se guardan en el navegador. Los perfiles y notificaciones son simulados. Las evidencias conservan nombres y descripciones, sin almacenar su contenido.
-
-Sitio publicado: https://suma-configuracion-cali.classicherb2.chatgpt.site/?version=14#dashboard
+Los documentos de historias de usuario no forman parte de este paquete de código.
